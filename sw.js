@@ -12,6 +12,7 @@ var files = [
 
 
 this.addEventListener('install', function(event) {
+  alert("puto colo");
   console.log("WORKER: install in progress", event);
   event.waitUntil(
     // v1: version
@@ -20,6 +21,7 @@ this.addEventListener('install', function(event) {
     .then(function(cache) { // API helps to caching responses
       console.info("WORKER: install complete");
       console.log("cache", cache);
+      alert("ni puta idea que hacer aqui");
       return cache
       .addAll(files);
     })
@@ -55,31 +57,3 @@ this.addEventListener('fetch', function(event) {
   }));
 
 });
-
-
-// self.addEventListener("activate", function(event) {
-//   console.log('WORKER: activate event in progress.');
-
-//   event.waitUntil(
-//     caches
-//       .keys()
-//       .then(function (keys) {
-//         return Promise.all(
-//           keys
-//             .filter(function (key) {
-//               // Filter by keys that don't start with the latest version prefix.
-//               return !key.startsWith(version);
-//             })
-//             .map(function (key) {
-//               /* Return a promise that's fulfilled
-//                  when each outdated cache is deleted.
-//               */
-//               return caches.delete(key);
-//             })
-//         );
-//       })
-//       .then(function() {
-//         console.log('WORKER: activate completed.');
-//       })
-//   );
-// });
